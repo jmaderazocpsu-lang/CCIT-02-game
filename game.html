@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> Sunny Beach Volley Battle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- LOGIN / SETUP OVERLAY -->
+  <div id="login-overlay">
+    <div class="login-card">
+      <div class="logo-badge">🏖️ VS CODE VOLLEYBALL</div>
+      <h2>BEACH VOLLEYBALL</h2>
+      <p class="subtitle">Customize players & upload photo avatars to start!</p>
+
+      <div class="mode-selector">
+        <label>Game Mode:</label>
+        <div class="radio-group">
+          <label class="radio-btn">
+            <input type="radio" name="gameMode" value="ai" checked /> 1 Player (VS AI)
+          </label>
+          <label class="radio-btn">
+            <input type="radio" name="gameMode" value="2p" /> 2 Players (Local)
+          </label>
+        </div>
+      </div>
+
+      <div class="players-setup-grid">
+        <!-- PLAYER 1 -->
+        <div class="player-config p1-card">
+          <div class="card-header">
+            <span class="p-tag p1-tag">P1</span>
+            <h3>Player 1</h3>
+          </div>
+          
+          <div class="avatar-preview-wrapper">
+            <div class="avatar-circle" id="p1-avatar-preview">
+              <span class="avatar-placeholder">P1</span>
+            </div>
+            <label class="upload-btn">
+              📸 Upload Photo
+              <input type="file" id="p1-photo-input" accept="image/*" />
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="p1-name">Name / Nickname:</label>
+            <input type="text" id="p1-name" value="Player 1" maxlength="12" />
+          </div>
+
+          <div class="controls-hint">
+            <strong>Controls:</strong> <br />
+            <kbd>A</kbd> <kbd>D</kbd> Move | <kbd>W</kbd> Jump | <kbd>S</kbd> Spike
+          </div>
+        </div>
+
+        <!-- PLAYER 2 / AI -->
+        <div class="player-config p2-card">
+          <div class="card-header">
+            <span class="p-tag p2-tag" id="p2-tag-label">AI</span>
+            <h3 id="p2-card-title">Bot Opponent</h3>
+          </div>
+
+          <div class="avatar-preview-wrapper">
+            <div class="avatar-circle" id="p2-avatar-preview">
+              <span class="avatar-placeholder">P2</span>
+            </div>
+            <label class="upload-btn">
+              📸 Upload Photo
+              <input type="file" id="p2-photo-input" accept="image/*" />
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="p2-name">Name / Nickname:</label>
+            <input type="text" id="p2-name" value="Sandy Bot" maxlength="12" />
+          </div>
+
+          <div class="controls-hint" id="p2-controls-hint">
+            <strong>Controls:</strong> <br />
+            <em>AI Auto Controller Active</em>
+          </div>
+        </div>
+      </div>
+
+      <button id="start-game-btn" class="start-btn">🎮 START MATCH</button>
+    </div>
+  </div>
+
+  <!-- GAME CONTAINER -->
+  <div id="game-wrapper">
+    <!-- TOP SCOREBAR -->
+    <div id="scorebar">
+      <div class="score-player p1-score-box">
+        <div class="score-avatar-small" id="score-p1-img"></div>
+        <div class="score-info">
+          <span class="player-label" id="score-p1-name">Player 1</span>
+          <span class="score-num" id="score-p1-val">0</span>
+        </div>
+      </div>
+
+      <div class="score-center">
+        <div class="match-info">FIRST TO 7 WINS</div>
+        <button id="pause-btn">⏸️ Pause</button>
+      </div>
+
+      <div class="score-player p2-score-box">
+        <div class="score-info right-align">
+          <span class="player-label" id="score-p2-name">Sandy Bot</span>
+          <span class="score-num" id="score-p2-val">0</span>
+        </div>
+        <div class="score-avatar-small" id="score-p2-img"></div>
+      </div>
+    </div>
+
+    <!-- CANVAS -->
+    <canvas id="gameCanvas" width="900" height="520"></canvas>
+
+    <!-- GAME OVER OVERLAY -->
+    <div id="game-over-overlay" class="hidden">
+      <div class="modal-card">
+        <h1 id="winner-title">PLAYER 1 WINS!</h1>
+        <p id="winner-subtext">Great beach volleyball victory!</p>
+        <button id="restart-btn" class="start-btn">🔄 Play Again</button>
+        <button id="menu-btn" class="secondary-btn">⚙️ Character Setup</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
